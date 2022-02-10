@@ -10,11 +10,11 @@ var loadTasks = function() {
             10: "",
             11: "",
             12: "",
-            1: "",
-            2: "",
-            3: "",
-            4: "",
-            5: ""
+            13: "",
+            14: "",
+            15: "",
+            16: "",
+            17: ""
         };
     }
 
@@ -35,10 +35,22 @@ var saveTasks = function() {
 
 $.each(timeBlocks, function(time, task) {
     var parentRow = "."+ time;
+    var textEl = $(parentRow + " textarea")
     $(parentRow + " .saveBtn").click(function() {
         // get textarea values
-        task = $(parentRow + " textarea").val();
+        task = textEl.val();
         timeBlocks[time] = task;
         saveTasks();
     });
+    var now = moment();
+    var taskTime = moment(now);
+    taskTime.set({h:time, m:0, s:0, ms:0});
+    if (now.hour() === taskTime.hour()) {
+        textEl.addClass("present");
+    } else if (now.isAfter(taskTime)) {
+        textEl.addClass("past");
+    } else {
+        textEl.addClass("future");
+    }
 });
+
