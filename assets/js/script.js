@@ -65,6 +65,7 @@ $.each(timeBlocks, function(time, task) {
         //if our current hour matches this block on the schedule
         if (now.hour() === taskTime.hour()) {
             //add the red present class
+            textEl.removeClass("past");
             textEl.addClass("present");
         }
         //if our current hour is after this block on the schedule
@@ -75,6 +76,7 @@ $.each(timeBlocks, function(time, task) {
         //if our current hour is before this block on the schedule
         else {
             //add the green future class
+            textEl.removeClass("present");
             textEl.addClass("future");
         }
         //set the currentDay <p> element text to the current date
