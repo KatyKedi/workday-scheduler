@@ -70,6 +70,7 @@ textarea{
   transition: all .3s ease-in-out;
 }
 
+/*remove padding from all container elements*/
 .d-inline-flex {
   padding: 0;
 }
